@@ -4,6 +4,7 @@ import router, { resetRouter } from '@/router'
 
 const state = {
   token: getToken(),
+  user_id: 0,
   name: '',
   avatar: '',
   introduction: '',
@@ -25,6 +26,9 @@ const mutations = {
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles
+  },
+  SET_USER_ID: (state, user_id) => {
+    state.user_id = user_id
   }
 }
 
@@ -33,7 +37,7 @@ const actions = {
   login({ commit }, userInfo) {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password }).then(response => {
+      login({ user_name: username.trim(), pass: password }).then(response => {
         const { data } = response
         commit('SET_TOKEN', data.token)
         setToken(data.token)
@@ -51,20 +55,22 @@ const actions = {
         const { data } = response
 
         if (!data) {
-          reject('Verification failed, please Login again.')
+          reject('获取用户信息失败，请重新登陆.')
         }
 
-        const { roles, name, avatar, introduction } = data
+        // 默认一个角色
+        data.roles = ['admin']
+        const { user_id, roles, user_name, avatar } = data
 
         // roles must be a non-empty array
         if (!roles || roles.length <= 0) {
-          reject('getInfo: roles must be a non-null array!')
+          reject('用户未分配角色')
         }
 
+        commit('SET_USER_ID', user_id)
         commit('SET_ROLES', roles)
-        commit('SET_NAME', name)
+        commit('SET_NAME', user_name)
         commit('SET_AVATAR', avatar)
-        commit('SET_INTRODUCTION', introduction)
         resolve(data)
       }).catch(error => {
         reject(error)
@@ -75,7 +81,7 @@ const actions = {
   // user logout
   logout({ commit, state, dispatch }) {
     return new Promise((resolve, reject) => {
-      logout(state.token).then(() => {
+      logout({ id: state.user_id }).then(() => {
         commit('SET_TOKEN', '')
         commit('SET_ROLES', [])
         removeToken()

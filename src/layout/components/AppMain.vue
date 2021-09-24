@@ -1,10 +1,12 @@
 <template>
   <section class="app-main">
-    <transition name="fade-transform" mode="out-in">
-      <keep-alive :include="cachedViews">
-        <router-view :key="key" />
-      </keep-alive>
-    </transition>
+    <el-card class="container-card">
+      <transition name="fade-transform" mode="out-in">
+        <keep-alive :include="cachedViews">
+          <router-view :key="key" />
+        </keep-alive>
+      </transition>
+    </el-card>
   </section>
 </template>
 
@@ -29,9 +31,11 @@ export default {
   width: 100%;
   position: relative;
   overflow: hidden;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
-.fixed-header+.app-main {
+.fixed-header + .app-main {
   padding-top: 50px;
 }
 
@@ -41,7 +45,7 @@ export default {
     min-height: calc(100vh - 84px);
   }
 
-  .fixed-header+.app-main {
+  .fixed-header + .app-main {
     padding-top: 84px;
   }
 }
@@ -53,5 +57,10 @@ export default {
   .fixed-header {
     padding-right: 15px;
   }
+}
+.container-card {
+  margin-top: 20px;
+  color: #303133;
+  font-size: 14px;
 }
 </style>
