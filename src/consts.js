@@ -20,3 +20,5 @@ export const UserType = {
   [IDTUser]: 'IDT用户'
 }
 export const RegisterType = { 1: '个人', 2: '企业' }
+// 流量配置系统版本
+export const SysVersionConfig = { 1: '高于', 2: '低于', 3: '等于' }

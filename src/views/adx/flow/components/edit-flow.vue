@@ -1,5 +1,5 @@
 <template>
-  <el-row class="flow-add-container">
+  <el-row v-loading="editLoading" class="flow-add-container">
     <el-form ref="flow" :model="ruleForm" :rules="rules" label-width="120px" class="demo-ruleForm">
       <el-col :span="10">
         <el-form-item label="配置名称" prop="name">
@@ -16,14 +16,9 @@
           <el-input v-model="ruleForm.version" />
         </el-form-item>
       </el-col>
-      <el-col :span="7">
-        <el-form-item label="系统版本" prop="sys_version">
-          <el-input v-model="ruleForm.sys_version" />
-        </el-form-item>
-      </el-col>
       <el-col :span="24">
         <el-form-item>
-          <el-button type="primary" @click="submitForm">立即创建</el-button>
+          <el-button type="primary" @click="submitForm">确认修改</el-button>
           <el-button @click="resetForm">重置</el-button>
           <el-button @click="handleClose">取消</el-button>
         </el-form-item>
@@ -33,14 +28,16 @@
 </template>
 
 <script>
+import { flowConfDetail } from '@/api/app'
+
 export default {
   data() {
     return {
+      editLoading: false,
       ruleForm: {
         name: '',
         type: '',
-        version: '',
-        sys_version: ''
+        version: ''
       },
       rules: {
         name: [
@@ -57,8 +54,17 @@ export default {
     }
   },
   methods: {
+    getFlowInfo(row) {
+      this.editLoading = true
+      flowConfDetail({ app_key: row.app_key, flow_id: row.id, conf_type: row.conf_type }).then(res => {
+        console.log(res)
+        this.editLoading = false
+      }).catch(() => {
+        this.editLoading = false
+      })
+    },
     handleClose() {
-      this.$emit('cancel-add')
+      this.$emit('cancel-edit')
     },
     submitForm() {
       this.$refs.flow.validate((valid) => {
@@ -73,13 +79,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-  .flow-add-container {
-    padding: 20px 20px 15px 0;
-    border: 1px solid #dee1eb;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-  }
-</style>

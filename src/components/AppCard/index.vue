@@ -8,7 +8,9 @@
     </p>
     <p class="search-item" style="margin-bottom: 20px;">
       <el-input v-model="search.app_name" placeholder="应用名/APPKEY" clearable @keyup.enter.native="getAppList">
-        <el-button slot="append" icon="el-icon-search" :loading="loadings.searchLoading" @click="getAppList">搜索</el-button>
+        <el-button slot="append" icon="el-icon-search" :loading="loadings.searchLoading" @click="getAppList">
+          搜索
+        </el-button>
       </el-input>
     </p>
     <div v-loading="loadings.searchLoading" class="list-box">
@@ -134,106 +136,106 @@ export default {
 </script>
 
 <style scoped lang="scss">
-    .app-list-container {
-        padding-right: 10px;
-        color: #909399;
+  .app-list-container {
+    padding-right: 10px;
+    color: #909399;
 
-        p.search-item {
-            margin: 0 0 10px 0;
-            padding: 0;
-        }
-
-        .list-box {
-            max-height: 540px;
-            overflow-y: scroll;
-            border: 1px solid #dee1eb;
-            padding: 10px 10px 0;
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-            border-radius: 5px;
-
-            &::-webkit-scrollbar {
-                /*滚动条整体样式*/
-                width: 5px; /*高宽分别对应横竖滚动条的尺寸*/
-                height: 0;
-            }
-
-            &::-webkit-scrollbar-thumb {
-                /*滚动条里面小方块*/
-                border-radius: 10px;
-                background-color: #cccfd8;
-            }
-
-            &::-webkit-scrollbar-track {
-                /*滚动条里面轨道*/
-                background: #ffffff;
-            }
-
-            .app-list {
-                display: flex;
-                margin-bottom: 10px;
-                border-radius: 3px;
-                overflow: hidden;
-                cursor: pointer;
-                position: relative;
-                border: 1px solid #dadada;
-
-                &:hover {
-                    color: #1890ff !important;
-                    text-decoration: underline;
-                }
-
-                .svg-icon {
-                    position: absolute;
-                    top: 5px;
-                    right: 5px;
-                    background: #fff;
-                    font-size: 14px;
-                }
-
-                .app-icon {
-                    width: 50px;
-                    height: 40px;
-
-                    img {
-                        width: 40px;
-                        height: 100%;
-                    }
-                }
-
-                .app-info {
-                    flex: 1;
-
-                    .name {
-                        max-width: 200px;
-                        font-weight: 600;
-                        font-size: 14px;
-                        height: 25px;
-                        line-height: 25px;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        white-space: nowrap;
-                    }
-
-                    .platform {
-                        font-size: 12px;
-                    }
-                }
-            }
-
-            .app-list-active {
-                border: 2px solid #1890ff !important;
-            }
-
-            .no-data {
-                margin-bottom: 10px;
-                text-align: center;
-            }
-        }
-
-        .el-pagination {
-            margin-top: 10px;
-            text-align: center;
-        }
+    p.search-item {
+      margin: 0 0 10px 0;
+      padding: 0;
     }
+
+    .list-box {
+      max-height: 540px;
+      overflow-y: scroll;
+      border: 1px solid #dee1eb;
+      padding: 10px 10px 0;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+
+      &::-webkit-scrollbar {
+        /*滚动条整体样式*/
+        width: 5px; /*高宽分别对应横竖滚动条的尺寸*/
+        height: 0;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        /*滚动条里面小方块*/
+        border-radius: 10px;
+        background-color: #cccfd8;
+      }
+
+      &::-webkit-scrollbar-track {
+        /*滚动条里面轨道*/
+        background: #ffffff;
+      }
+
+      .app-list {
+        display: flex;
+        margin-bottom: 10px;
+        border-radius: 3px;
+        overflow: hidden;
+        cursor: pointer;
+        position: relative;
+        border: 1px solid #dadada;
+
+        &:hover {
+          color: #1890ff !important;
+          text-decoration: underline;
+        }
+
+        .svg-icon {
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          background: #fff;
+          font-size: 14px;
+        }
+
+        .app-icon {
+          width: 50px;
+          height: 40px;
+
+          img {
+            width: 40px;
+            height: 100%;
+          }
+        }
+
+        .app-info {
+          flex: 1;
+
+          .name {
+            max-width: 200px;
+            font-weight: 600;
+            font-size: 14px;
+            height: 25px;
+            line-height: 25px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+
+          .platform {
+            font-size: 12px;
+          }
+        }
+      }
+
+      .app-list-active {
+        border: 2px solid #1890ff !important;
+      }
+
+      .no-data {
+        margin-bottom: 10px;
+        text-align: center;
+      }
+    }
+
+    .el-pagination {
+      margin-top: 10px;
+      text-align: center;
+    }
+  }
 </style>

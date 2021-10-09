@@ -119,7 +119,7 @@ export default {
     handleSubmit(t) {
       this.$refs.check_user.validate((valid) => {
         if (valid) {
-          this.$confirm('确认审批' + (t === -1 ? '不通过' : '') + '此用户么?', '操作警告', {
+          this.$confirm('确认审批' + (t === -1 ? ' 不通过 ' : '') + '此用户么?', '操作警告', {
             confirmButtonText: '是的',
             cancelButtonText: '取消',
             type: t === -1 ? 'error' : 'info'

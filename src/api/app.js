@@ -26,3 +26,11 @@ export function deleteFlowConf(id) {
   })
 }
 
+export function flowConfDetail(params) {
+  return request({
+    url: '/api/flow/detail',
+    method: 'get',
+    params
+  })
+}
+

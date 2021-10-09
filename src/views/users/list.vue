@@ -28,13 +28,30 @@
         <el-select v-model="groupForm.group_id" class="w150" clearable>
           <el-option v-for="(item, key) in groups" :label="item" :value="key" />
         </el-select>
-        <el-button icon="el-icon-edit" size="mini" type="primary" style="margin-left: 10px;" :loading="loadings.changeLoading" @click="changeGroup">修改用户组</el-button>
+        <el-button
+          icon="el-icon-edit"
+          size="mini"
+          type="primary"
+          style="margin-left: 10px;"
+          :loading="loadings.changeLoading"
+          @click="changeGroup"
+        >修改用户组
+        </el-button>
       </div>
       <el-button type="primary" icon="el-icon-plus" size="mini">添加用户</el-button>
       <el-button type="primary" icon="el-icon-plus" size="mini">添加开发者子账号</el-button>
     </el-col>
     <el-col :span="24">
-      <el-table v-loading="loadings.pageLoading" :data="userList.list" highlight-current-row stripe border size="mini" style="margin-top: 15px" @selection-change="handleSelection">
+      <el-table
+        v-loading="loadings.pageLoading"
+        :data="userList.list"
+        highlight-current-row
+        stripe
+        border
+        size="mini"
+        style="margin-top: 15px"
+        @selection-change="handleSelection"
+      >
         <el-table-column type="selection" width="50" align="center" />
         <el-table-column prop="user_id" label="UID" width="90" />
         <el-table-column prop="email" label="邮箱" width="200" />
